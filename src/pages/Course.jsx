@@ -138,7 +138,7 @@ const Course = () => {
               preload="metadata"
               playsInline
             >
-              <source src="/готовое.mp4" type="video/mp4" />
+              <source src="/MoneyX/готовое.mp4" type="video/mp4" />
               Ваш браузер не поддерживает видео элемент.
             </video>
             
