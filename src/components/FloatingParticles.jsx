@@ -39,9 +39,11 @@ const FloatingParticles = () => {
       return particle
     }
 
-    // Создаем 150 частиц для более богатого фона
+    // Создаем меньше частиц для слабых устройств
+    const isMobile = window.innerWidth < 768
+    const particleCount = isMobile ? 30 : 80
     const particles = []
-    for (let i = 0; i < 150; i++) {
+    for (let i = 0; i < particleCount; i++) {
       particles.push(createParticle())
     }
 
@@ -86,15 +88,15 @@ const FloatingParticles = () => {
       }
     }
 
-    // Плавающая анимация частиц (оптимизированная) - запускаем сразу
+    // Плавающая анимация частиц (оптимизированная для мобильных) - запускаем сразу
     particles.forEach((particle, _index) => {
-      const duration = 4 + Math.random() * 6 // 4-10 секунд (более медленное движение)
-      const delay = Math.random() * 1 // Уменьшаем задержку для быстрого старта
+      const duration = isMobile ? 8 + Math.random() * 4 : 4 + Math.random() * 6 // Медленнее на мобильных
+      const delay = Math.random() * 1
       
       gsap.to(particle, {
-        y: `+=${30 + Math.random() * 80}`, // Меньшие движения для более тонкого эффекта
-        x: `+=${15 + Math.random() * 30}`,
-        rotation: 180 + Math.random() * 180, // Частичное вращение
+        y: `+=${isMobile ? 20 + Math.random() * 40 : 30 + Math.random() * 80}`, // Меньше движения на мобильных
+        x: `+=${isMobile ? 10 + Math.random() * 20 : 15 + Math.random() * 30}`,
+        rotation: isMobile ? 90 + Math.random() * 90 : 180 + Math.random() * 180, // Меньше вращения на мобильных
         duration: duration,
         delay: delay,
         ease: "sine.inOut",
@@ -103,42 +105,47 @@ const FloatingParticles = () => {
       })
     })
 
-    // Анимация при наведении мыши
-    const handleMouseMove = (e) => {
-      const x = e.clientX
-      const y = e.clientY
-      
-      particles.forEach((particle, index) => {
-        const rect = particle.getBoundingClientRect()
-        const distance = Math.sqrt(
-          Math.pow(x - (rect.left + rect.width / 2), 2) + 
-          Math.pow(y - (rect.top + rect.height / 2), 2)
-        )
+    // Анимация при наведении мыши (только для десктопа)
+    if (!isMobile) {
+      const handleMouseMove = (e) => {
+        const x = e.clientX
+        const y = e.clientY
         
-        if (distance < 100) {
-          const force = (100 - distance) / 100
-          const angle = Math.atan2(
-            y - (rect.top + rect.height / 2),
-            x - (rect.left + rect.width / 2)
+        particles.forEach((particle, index) => {
+          const rect = particle.getBoundingClientRect()
+          const distance = Math.sqrt(
+            Math.pow(x - (rect.left + rect.width / 2), 2) + 
+            Math.pow(y - (rect.top + rect.height / 2), 2)
           )
           
-          gsap.to(particle, {
-            x: `+=${Math.cos(angle) * force * 20}`,
-            y: `+=${Math.sin(angle) * force * 20}`,
-            scale: 1 + force * 0.5,
-            duration: 0.3,
-            ease: "power2.out"
-          })
-        }
-      })
+          if (distance < 100) {
+            const force = (100 - distance) / 100
+            const angle = Math.atan2(
+              y - (rect.top + rect.height / 2),
+              x - (rect.left + rect.width / 2)
+            )
+            
+            gsap.to(particle, {
+              x: `+=${Math.cos(angle) * force * 20}`,
+              y: `+=${Math.sin(angle) * force * 20}`,
+              scale: 1 + force * 0.5,
+              duration: 0.3,
+              ease: "power2.out"
+            })
+          }
+        })
+      }
+      
+      window.addEventListener('mousemove', handleMouseMove)
     }
 
     window.addEventListener('scroll', handleScroll)
-    window.addEventListener('mousemove', handleMouseMove)
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('mousemove', handleMouseMove)
+      if (!isMobile) {
+        window.removeEventListener('mousemove', handleMouseMove)
+      }
       // Очищаем частицы при размонтировании
       container.innerHTML = ''
     }

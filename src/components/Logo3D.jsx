@@ -19,7 +19,7 @@ const Logo3D = () => {
           <span
             key={index}
             ref={el => moneyLettersRef.current[index] = el}
-            className="text-6xl md:text-8xl font-extrabold text-white uppercase tracking-wider relative"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold text-white uppercase tracking-wider relative"
             style={{
               fontFamily: 'Orbitron, monospace',
               textShadow: '0 0 20px rgba(255, 255, 255, 0.3), 0 0 40px rgba(255, 255, 255, 0.1)',
@@ -33,7 +33,7 @@ const Logo3D = () => {
         {/* Буква X */}
         <span
           ref={xLetterRef}
-          className="text-6xl md:text-8xl font-extrabold text-amber-400 uppercase tracking-wider relative"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold text-amber-400 uppercase tracking-wider relative"
           style={{
             fontFamily: 'Orbitron, monospace',
             textShadow: '0 0 30px rgba(251, 191, 36, 0.8), 0 0 60px rgba(251, 191, 36, 0.4), 0 0 90px rgba(251, 191, 36, 0.2)',
