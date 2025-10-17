@@ -307,8 +307,8 @@ const LeadForm = ({ isOpen, onClose, formType = 'consultation' }) => {
   if (!isOpen) return null
 
   const formTitle = formType === 'consultation' 
-    ? 'Получить консультацию' 
-    : 'Записаться на полный курс'
+    ? 'Поучавствовать' 
+    : 'Поучавствовать'
 
   const formDescription = formType === 'consultation'
     ? 'Оставьте свои контактные данные, и наш эксперт свяжется с вами для бесплатной консультации'
@@ -481,7 +481,7 @@ const LeadForm = ({ isOpen, onClose, formType = 'consultation' }) => {
                   Отправляем...
                 </div>
               ) : (
-                formType === 'consultation' ? 'Получить консультацию' : 'Записаться на курс'
+                'Поучавствовать'
               )}
             </button>
             
