@@ -60,7 +60,7 @@ const InvitationBanner = ({ onBookSpot }) => {
               <div className="text-center space-y-2">
                 <div className="text-amber-400 font-bold text-base sm:text-lg">💰 ТРЕБУЕТСЯ СТАРТОВЫЙ КАПИТАЛ</div>
                 <div className="text-gray-300 text-xs sm:text-sm">Для участия в копитрейдинге необходим минимальный депозит</div>
-                <div className="text-white font-semibold text-sm sm:text-base">От $1000 для начала инвестиций</div>
+                <div className="text-white font-semibold text-sm sm:text-base">От $100 для начала инвестиций</div>
               </div>
             </div>
 
