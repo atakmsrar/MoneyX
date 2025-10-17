@@ -57,7 +57,7 @@ const FloatingParticles = () => {
       for (let i = 0; i < particles.length; i += batchSize) {
         const batch = particles.slice(i, i + batchSize)
         
-        batch.forEach((particle, batchIndex) => {
+        batch.forEach((particle, _batchIndex) => {
           const index = i + batchIndex
           const speed = (index % 5 + 1) * 0.12 // Разные скорости для разнообразия
           const direction = index % 2 === 0 ? 1 : -1
@@ -87,7 +87,7 @@ const FloatingParticles = () => {
     }
 
     // Плавающая анимация частиц (оптимизированная) - запускаем сразу
-    particles.forEach((particle, index) => {
+    particles.forEach((particle, _index) => {
       const duration = 4 + Math.random() * 6 // 4-10 секунд (более медленное движение)
       const delay = Math.random() * 1 // Уменьшаем задержку для быстрого старта
       
