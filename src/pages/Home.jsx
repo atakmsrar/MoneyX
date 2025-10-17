@@ -26,20 +26,22 @@ const Home = () => {
     gsap.set(subtitleRef.current, { opacity: 0, y: 30 })
     gsap.set(ctaRef.current, { opacity: 0, y: 20, scale: 0.95 })
     
-    // Немедленно запускаем анимацию
+    // Немедленно запускаем анимацию с immediateRender
     gsap.to(titleRef.current, {
       opacity: 1,
       y: 0,
       scale: 1,
       duration: 1.2,
-      ease: "power3.out"
+      ease: "power3.out",
+      immediateRender: true
     })
     gsap.to(subtitleRef.current, {
       opacity: 1,
       y: 0,
       duration: 1,
       ease: "power2.out",
-      delay: 0.3
+      delay: 0.3,
+      immediateRender: true
     })
     gsap.to(ctaRef.current, {
       opacity: 1,
@@ -47,7 +49,8 @@ const Home = () => {
       scale: 1,
       duration: 0.8,
       ease: "power2.out",
-      delay: 0.6
+      delay: 0.6,
+      immediateRender: true
     })
     
 
@@ -115,7 +118,7 @@ const Home = () => {
       <div className="min-h-screen flex items-center justify-center px-4 pt-20">
         <div ref={heroRef} className="max-w-6xl mx-auto text-center">
           {/* 3D Логотип */}
-          <div ref={titleRef} className="mb-12 flex justify-center">
+          <div ref={titleRef} className="mb-12 flex justify-center" style={{ opacity: 1, transform: 'translateY(0) scale(1)' }}>
             <Logo3D />
           </div>
           
@@ -124,7 +127,9 @@ const Home = () => {
             ref={subtitleRef}
             className="text-xl md:text-2xl text-gray-300 mb-16 max-w-3xl mx-auto leading-relaxed text-center"
             style={{
-              textShadow: '0 0 20px rgba(255, 255, 255, 0.3), 0 0 40px rgba(255, 255, 255, 0.1)'
+              textShadow: '0 0 20px rgba(255, 255, 255, 0.3), 0 0 40px rgba(255, 255, 255, 0.1)',
+              opacity: 1,
+              transform: 'translateY(0)'
             }}
           >
             Профессиональная платформа для копитрейдинга и инвестиций с передовыми 
@@ -132,7 +137,7 @@ const Home = () => {
           </p>
           
           {/* CTA кнопки */}
-          <div ref={ctaRef} className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+          <div ref={ctaRef} className="flex flex-col sm:flex-row gap-6 justify-center items-center" style={{ opacity: 1, transform: 'translateY(0) scale(1)' }}>
             <button 
               onClick={openLeadForm}
               className="px-8 py-4 bg-gradient-to-r from-amber-400 to-orange-500 text-black font-bold rounded-full hover:from-amber-300 hover:to-orange-400 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-amber-500/25"

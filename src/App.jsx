@@ -5,8 +5,10 @@ import CustomCursor from './components/CustomCursor'
 import ParallaxBackground from './components/ParallaxBackground'
 import FloatingParticles from './components/FloatingParticles'
 
-// Ленивая загрузка страниц для лучшей производительности
-const Home = lazy(() => import('./pages/Home'))
+// Импортируем главную страницу сразу для быстрой загрузки
+import Home from './pages/Home'
+
+// Ленивая загрузка остальных страниц
 const News = lazy(() => import('./pages/News'))
 const Course = lazy(() => import('./pages/Course'))
 const Reviews = lazy(() => import('./pages/Reviews'))
@@ -28,8 +30,8 @@ function App() {
       
       <div className="relative z-10">
         <Suspense fallback={
-          <div className="min-h-screen flex items-center justify-center">
-            <div className="text-amber-400 text-2xl font-bold">Загрузка...</div>
+          <div className="min-h-screen flex items-center justify-center bg-black">
+            <div className="text-amber-400 text-xl font-bold animate-pulse">Загрузка...</div>
           </div>
         }>
           <Routes>
