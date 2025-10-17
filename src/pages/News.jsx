@@ -118,7 +118,7 @@ const News = () => {
             ref={titleRef}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-amber-400 via-pink-500 to-purple-600 bg-clip-text text-transparent leading-tight"
           >
-            Инвестиционные новости
+            Новости
           </h1>
           <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto px-4">
             Актуальные новости о копитрейдинге, инвестициях и финансовых рынках
