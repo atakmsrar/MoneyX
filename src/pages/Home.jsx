@@ -142,14 +142,7 @@ const Home = () => {
               onClick={openLeadForm}
               className="px-8 py-4 bg-gradient-to-r from-amber-400 to-orange-500 text-black font-bold rounded-full hover:from-amber-300 hover:to-orange-400 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-amber-500/25"
             >
-              Начать инвестировать
-            </button>
-            
-            <button 
-              onClick={openLeadForm}
-              className="px-8 py-4 border-2 border-purple-400 text-purple-400 font-bold rounded-full hover:bg-purple-400 hover:text-black transition-all duration-300 transform hover:scale-105"
-            >
-              Узнать условия
+              Поучавствовать
             </button>
           </div>
         </div>

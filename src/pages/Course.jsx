@@ -184,18 +184,12 @@ const Course = () => {
               </div>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex justify-center">
               <button 
                 onClick={openCourseForm}
                 className="px-8 py-4 bg-gradient-to-r from-amber-400 to-orange-500 text-black font-bold rounded-full hover:from-amber-300 hover:to-orange-400 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-amber-500/25"
               >
-                Записаться на полный курс
-              </button>
-              <button 
-                onClick={openConsultationForm}
-                className="px-8 py-4 border-2 border-purple-400 text-purple-400 font-bold rounded-full hover:bg-purple-400 hover:text-black transition-all duration-300 transform hover:scale-105"
-              >
-                Получить консультацию
+                Поучавствовать
               </button>
             </div>
           </div>
