@@ -14,8 +14,8 @@ if (redirect && redirect !== location.href) {
 // Динамический basename для разных платформ
 const getBasename = () => {
   if (typeof window !== 'undefined') {
-    // Если это GitHub Pages (содержит /MoneyX/ в URL)
-    if (window.location.hostname === 'atakmsrar.github.io' || window.location.pathname.includes('/MoneyX/')) {
+    // Если это GitHub Pages
+    if (window.location.hostname === 'atakmsrar.github.io') {
       return '/MoneyX'
     }
   }
