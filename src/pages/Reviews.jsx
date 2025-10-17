@@ -105,10 +105,10 @@ const Reviews = () => {
     <div className="min-h-screen pt-20 px-4 py-12">
       <div ref={containerRef} className="max-w-6xl mx-auto">
         {/* Заголовок */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 px-4">
           <h1 
             ref={titleRef}
-            className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-amber-400 via-pink-500 to-purple-600 bg-clip-text text-transparent"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-amber-400 via-pink-500 to-purple-600 bg-clip-text text-transparent leading-tight"
           >
             Отзывы
           </h1>
