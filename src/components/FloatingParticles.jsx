@@ -57,7 +57,7 @@ const FloatingParticles = () => {
       for (let i = 0; i < particles.length; i += batchSize) {
         const batch = particles.slice(i, i + batchSize)
         
-        batch.forEach((particle, _batchIndex) => {
+        batch.forEach((particle, batchIndex) => {
           const index = i + batchIndex
           const speed = (index % 5 + 1) * 0.12 // Разные скорости для разнообразия
           const direction = index % 2 === 0 ? 1 : -1
