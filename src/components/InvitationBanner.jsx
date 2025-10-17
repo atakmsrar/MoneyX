@@ -70,7 +70,7 @@ const InvitationBanner = ({ onBookSpot }) => {
                 onClick={handleBookSpot}
                 className="group bg-gradient-to-r from-amber-400 to-orange-500 text-black px-4 sm:px-8 py-3 sm:py-4 rounded-lg font-bold text-sm sm:text-lg hover:from-amber-300 hover:to-orange-400 transition-all duration-300 transform hover:scale-105 flex items-center space-x-2 sm:space-x-3"
               >
-                <span className="text-center">ПОУЧАВСТВОВАТЬ</span>
+                <span className="text-center">ПОУЧАСТВОВАТЬ</span>
                 <svg
                   className="w-4 h-4 sm:w-5 sm:h-5 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300"
                   fill="currentColor"
