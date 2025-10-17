@@ -11,9 +11,20 @@ if (redirect && redirect !== location.href) {
   history.replaceState(null, null, redirect);
 }
 
+// Динамический basename для разных платформ
+const getBasename = () => {
+  if (typeof window !== 'undefined') {
+    // Если это GitHub Pages (содержит /MoneyX/ в URL)
+    if (window.location.hostname === 'atakmsrar.github.io' || window.location.pathname.includes('/MoneyX/')) {
+      return '/MoneyX'
+    }
+  }
+  return '/'
+}
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename={getBasename()}>
       <App />
     </BrowserRouter>
   </React.StrictMode>,

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import LeadForm from '../components/LeadForm'
+import DynamicVideo from '../components/DynamicVideo'
 
 const Course = () => {
   const containerRef = useRef(null)
@@ -127,20 +128,7 @@ const Course = () => {
         {/* Видео плеер */}
         <div ref={videoRef} className="mb-16">
           <div className="relative bg-black/20 backdrop-blur-sm rounded-2xl border border-white/10 overflow-hidden shadow-2xl">
-            <video 
-              ref={videoElementRef}
-              className="w-full h-auto rounded-2xl"
-              controls
-              autoPlay
-              muted
-              loop
-              poster=""
-              preload="metadata"
-              playsInline
-            >
-              <source src="/MoneyX/готовое.mp4" type="video/mp4" />
-              Ваш браузер не поддерживает видео элемент.
-            </video>
+            <DynamicVideo />
             
             {/* Декоративные элементы */}
             <div className="absolute top-4 left-4">
