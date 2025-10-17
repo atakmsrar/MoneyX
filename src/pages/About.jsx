@@ -1,12 +1,22 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import PartnersTicker from '../components/PartnersTicker'
+import LeadForm from '../components/LeadForm'
 
 const About = () => {
   const containerRef = useRef(null)
   const titleRef = useRef(null)
   const contentRef = useRef(null)
   const statsRef = useRef(null)
+  const [isLeadFormOpen, setIsLeadFormOpen] = useState(false)
+
+  const openLeadForm = () => {
+    setIsLeadFormOpen(true)
+  }
+
+  const closeLeadForm = () => {
+    setIsLeadFormOpen(false)
+  }
 
   useEffect(() => {
     // Проверяем, что refs готовы
@@ -175,12 +185,22 @@ const About = () => {
             <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
               Присоединяйтесь к MoneyX и получите доступ к профессиональным инвестиционным стратегиям
             </p>
-            <button className="px-8 py-4 bg-gradient-to-r from-amber-400 to-orange-500 text-black font-bold rounded-full hover:from-amber-300 hover:to-orange-400 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-amber-500/25">
+            <button 
+              onClick={openLeadForm}
+              className="px-8 py-4 bg-gradient-to-r from-amber-400 to-orange-500 text-black font-bold rounded-full hover:from-amber-300 hover:to-orange-400 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-amber-500/25"
+            >
               Начать копитрейдинг
             </button>
           </div>
         </div>
       </div>
+
+      {/* Лид форма */}
+      <LeadForm 
+        isOpen={isLeadFormOpen}
+        onClose={closeLeadForm}
+        formType="consultation"
+      />
     </div>
   )
 }

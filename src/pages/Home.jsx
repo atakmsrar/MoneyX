@@ -145,12 +145,12 @@ const Home = () => {
               Начать инвестировать
             </button>
             
-            <Link 
-              to="/course"
+            <button 
+              onClick={openLeadForm}
               className="px-8 py-4 border-2 border-purple-400 text-purple-400 font-bold rounded-full hover:bg-purple-400 hover:text-black transition-all duration-300 transform hover:scale-105"
             >
               Узнать условия
-            </Link>
+            </button>
           </div>
         </div>
 
