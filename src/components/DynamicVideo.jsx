@@ -9,7 +9,7 @@ const DynamicVideo = () => {
       const isGitHubPages = window.location.hostname === 'atakmsrar.github.io' || 
                            window.location.pathname.includes('/MoneyX/')
       
-      const videoPath = isGitHubPages ? '/MoneyX/готовое.mp4' : '/готовое.mp4'
+      const videoPath = isGitHubPages ? '/MoneyX/ready.mp4' : '/ready.mp4'
       
       // Создаем source элемент
       const source = document.createElement('source')
