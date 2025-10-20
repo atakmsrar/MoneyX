@@ -18,10 +18,10 @@ const getBasename = () => {
     if (window.location.hostname === 'atakmsrar.github.io') {
       return '/MoneyX'
     }
-    // Для локальной разработки тоже используем /MoneyX
-    return '/MoneyX'
+    // Для локальной разработки
+    return '/'
   }
-  return '/MoneyX'
+  return '/'
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(
