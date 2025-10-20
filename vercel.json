@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/((?!assets|vite.svg|ready.mp4|.*\\.(js|css|svg|mp4|ico|png|jpg|jpeg|gif|webp)).*)",
-      "destination": "/index.html"
+      "source": "/((?!MoneyX/assets|MoneyX/vite.svg|MoneyX/ready.mp4|.*\\.(js|css|svg|mp4|ico|png|jpg|jpeg|gif|webp)).*)",
+      "destination": "/MoneyX/index.html"
     }
   ]
 }
