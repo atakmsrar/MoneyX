@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { gsap } from 'gsap'
+import { fadeInUp, staggerFadeIn } from '../utils/animations'
+import { reviews } from '../constants/reviews'
 import LeadForm from '../components/LeadForm'
 
 const Reviews = () => {
@@ -18,33 +19,13 @@ const Reviews = () => {
     // Помечаем, что анимация запущена
     animationTriggered.current = true
 
-    // Устанавливаем начальные стили
-    gsap.set(titleRef.current, { opacity: 0, y: 50, scale: 0.9 })
-    
-    const tl = gsap.timeline()
-    
     // Анимация появления заголовка
-    tl.to(titleRef.current, {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      duration: 1,
-      ease: "power3.out"
-    })
+    fadeInUp(titleRef.current)
 
     // Анимация появления отзывов
     const validRefs = reviewsRef.current.filter(ref => ref !== null)
     if (validRefs.length > 0) {
-      gsap.set(validRefs, { opacity: 0, y: 30, scale: 0.95 })
-      gsap.to(validRefs, { 
-        opacity: 1, 
-        y: 0, 
-        scale: 1, 
-        duration: 0.8, 
-        stagger: 0.2,
-        ease: "power2.out",
-        delay: 0.5
-      })
+      staggerFadeIn(validRefs, 0.5)
     }
   }, [])
 
@@ -56,50 +37,6 @@ const Reviews = () => {
     setIsLeadFormOpen(false)
   }
 
-  const reviews = [
-    {
-      name: "Александр Петров",
-      role: "Копитрейдер",
-      rating: 5,
-      text: "За 6 месяцев копитрейдинга с MoneyX получил стабильную доходность 18%! Эксперты действительно знают свое дело. Рекомендую всем!",
-      avatar: "АП"
-    },
-    {
-      name: "Мария Сидорова",
-      role: "Инвестор",
-      rating: 5,
-      text: "Начала с $2000, сейчас мой депозит вырос до $3500. Копитрейдинг с MoneyX - это пассивный доход, о котором я мечтала!",
-      avatar: "МС"
-    },
-    {
-      name: "Дмитрий Козлов",
-      role: "Аналитик",
-      rating: 5,
-      text: "Профессиональные стратегии и прозрачная отчетность. За 4 месяца доходность составила 22%. Лучшая платформа для копитрейдинга!",
-      avatar: "ДК"
-    },
-    {
-      name: "Елена Волкова",
-      role: "Предприниматель",
-      rating: 5,
-      text: "Благодаря копитрейдингу с MoneyX получаю стабильный пассивный доход. Не нужно следить за рынком - эксперты делают все за меня!",
-      avatar: "ЕВ"
-    },
-    {
-      name: "Игорь Морозов",
-      role: "IT-специалист",
-      rating: 5,
-      text: "Отличная платформа для копитрейдинга! Удобный интерфейс, детальная аналитика и стабильные результаты. Доходность 15% за квартал.",
-      avatar: "ИМ"
-    },
-    {
-      name: "Анна Новикова",
-      role: "Финансовый консультант",
-      rating: 5,
-      text: "Копитрейдинг с MoneyX превзошел все ожидания! За 8 месяцев увеличила капитал на 35%. Профессиональный подход и отличные результаты.",
-      avatar: "АН"
-    }
-  ]
 
   return (
     <div className="min-h-screen pt-20 px-4 py-12">
@@ -108,7 +45,7 @@ const Reviews = () => {
         <div className="text-center mb-16 px-4">
           <h1 
             ref={titleRef}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-amber-400 via-pink-500 to-purple-600 bg-clip-text text-transparent leading-tight"
+            className="title-gradient mb-6"
           >
             Отзывы
           </h1>
@@ -156,7 +93,7 @@ const Reviews = () => {
           </p>
           <button 
             onClick={openLeadForm}
-            className="px-8 py-4 bg-gradient-to-r from-amber-400 to-orange-500 text-black font-bold rounded-full hover:from-amber-300 hover:to-orange-400 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-amber-500/25"
+            className="btn-primary"
           >
             Поучаствовать
           </button>

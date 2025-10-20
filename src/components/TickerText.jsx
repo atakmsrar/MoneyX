@@ -1,23 +1,12 @@
 import { useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
+import { tickerAnimation } from '../utils/animations'
 
 const TickerText = () => {
   const tickerRef = useRef(null)
 
   useEffect(() => {
     if (!tickerRef.current) return
-
-    // Устанавливаем начальную позицию так, чтобы текст был сразу виден
-    gsap.fromTo(tickerRef.current, 
-      { x: '0%' },
-      {
-        x: '-50%',
-        duration: 15,
-        ease: 'none',
-        repeat: -1,
-        immediateRender: true
-      }
-    )
+    tickerAnimation(tickerRef.current, 15)
   }, [])
 
   return (

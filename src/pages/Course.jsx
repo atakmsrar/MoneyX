@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import LeadForm from '../components/LeadForm'
-import DynamicVideo from '../components/DynamicVideo'
 
 const Course = () => {
   const containerRef = useRef(null)
@@ -112,7 +111,7 @@ const Course = () => {
         <div className="text-center mb-16 px-4">
           <h1 
             ref={titleRef}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-amber-400 via-pink-500 to-purple-600 bg-clip-text text-transparent leading-tight"
+            className="title-gradient mb-6"
           >
             Демо курс
           </h1>
@@ -128,7 +127,20 @@ const Course = () => {
         {/* Видео плеер */}
         <div ref={videoRef} className="mb-16">
           <div className="relative bg-black/20 backdrop-blur-sm rounded-2xl border border-white/10 overflow-hidden shadow-2xl">
-            <DynamicVideo />
+            <video 
+              ref={videoElementRef}
+              className="w-full h-auto rounded-2xl"
+              controls
+              autoPlay
+              muted
+              loop
+              poster=""
+              preload="metadata"
+              playsInline
+            >
+              <source src="/MoneyX/готовое.mp4" type="video/mp4" />
+              Ваш браузер не поддерживает видео элемент.
+            </video>
             
             {/* Декоративные элементы */}
             <div className="absolute top-4 left-4">
@@ -175,7 +187,7 @@ const Course = () => {
             <div className="flex justify-center">
               <button 
                 onClick={openCourseForm}
-                className="px-8 py-4 bg-gradient-to-r from-amber-400 to-orange-500 text-black font-bold rounded-full hover:from-amber-300 hover:to-orange-400 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-amber-500/25"
+                className="btn-primary"
               >
                 Поучаствовать
               </button>

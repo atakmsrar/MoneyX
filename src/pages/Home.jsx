@@ -140,7 +140,7 @@ const Home = () => {
           <div ref={ctaRef} className="flex flex-col sm:flex-row gap-6 justify-center items-center" style={{ opacity: 1, transform: 'translateY(0) scale(1)' }}>
             <button 
               onClick={openLeadForm}
-              className="px-8 py-4 bg-gradient-to-r from-amber-400 to-orange-500 text-black font-bold rounded-full hover:from-amber-300 hover:to-orange-400 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-amber-500/25"
+              className="btn-primary"
             >
               Поучаствовать
             </button>

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { gsap } from 'gsap'
+import { fadeInUp, staggerFadeIn } from '../utils/animations'
+import { stats } from '../constants/stats'
 import PartnersTicker from '../components/PartnersTicker'
 import LeadForm from '../components/LeadForm'
 
@@ -25,45 +26,16 @@ const About = () => {
       return
     }
 
-    // Устанавливаем начальные стили
-    gsap.set(titleRef.current, { opacity: 0, y: 50, scale: 0.9 })
-    gsap.set(contentRef.current, { opacity: 0, y: 30 })
-    gsap.set(statsRef.current, { opacity: 0, y: 30 })
-    
-    const tl = gsap.timeline()
-    
     // Анимация появления заголовка
-    tl.to(titleRef.current, {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      duration: 1,
-      ease: "power3.out"
-    })
+    fadeInUp(titleRef.current)
 
     // Анимация появления контента
-    tl.to(contentRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: "power2.out"
-    }, "-=0.5")
+    fadeInUp(contentRef.current, 0.5)
 
     // Анимация появления статистики
-    tl.to(statsRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: "power2.out"
-    }, "-=0.3")
+    fadeInUp(statsRef.current, 0.7)
   }, [])
 
-  const stats = [
-    { number: "500+", label: "Успешных инвесторов" },
-    { number: "25%", label: "Средняя доходность" },
-    { number: "3 года", label: "Опыт на рынке" },
-    { number: "99%", label: "Довольных клиентов" }
-  ]
 
   return (
     <div className="min-h-screen pt-20">
@@ -75,7 +47,7 @@ const About = () => {
         <div className="text-center mb-16 px-4">
           <h1 
             ref={titleRef}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-amber-400 via-pink-500 to-purple-600 bg-clip-text text-transparent leading-tight"
+            className="title-gradient mb-6"
           >
             О MoneyX
           </h1>
@@ -188,7 +160,7 @@ const About = () => {
             </p>
             <button 
               onClick={openLeadForm}
-              className="px-8 py-4 bg-gradient-to-r from-amber-400 to-orange-500 text-black font-bold rounded-full hover:from-amber-300 hover:to-orange-400 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-amber-500/25"
+              className="btn-primary"
             >
               Поучаствовать
             </button>

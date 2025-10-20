@@ -1,34 +1,14 @@
 import { useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
+import { tickerAnimation } from '../utils/animations'
+import { partners } from '../constants/partners'
 
 const PartnersTicker = () => {
   const tickerRef = useRef(null)
 
-  const partners = [
-    { name: "Richard Wee Chambers", logo: "RWC" },
-    { name: "Alliance Bank", logo: "AB" },
-    { name: "Liberty Insurance", logo: "LI" },
-    { name: "Solaroo", logo: "SOL" },
-    { name: "StashAway", logo: "SA" },
-    { name: "Grandall Law Firm", logo: "GLF" },
-    { name: "Investment Partners", logo: "IP" },
-    { name: "Financial Advisors", logo: "FA" }
-  ]
 
   useEffect(() => {
     if (!tickerRef.current) return
-
-    // Устанавливаем начальную позицию и сразу запускаем анимацию
-    gsap.fromTo(tickerRef.current, 
-      { x: '0%' },
-      {
-        x: '-50%',
-        duration: 20,
-        ease: 'none',
-        repeat: -1,
-        immediateRender: true
-      }
-    )
+    tickerAnimation(tickerRef.current, 20)
   }, [])
 
   return (
