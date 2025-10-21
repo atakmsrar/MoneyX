@@ -2,9 +2,9 @@
  * Утилита для отправки данных в Google Sheets
  */
 
-// URL вашего Google Apps Script Web App (нужно будет настроить)
+// URL вашего Google Apps Script Web App
 // Инструкция по настройке в файле GOOGLE_SHEETS_SETUP.md
-const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL || ''
+const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbxGXSXF7PtH8VpCHo7uofwuXyVN7pMiLVRR1eUzc_9sBefMwlNei7BSulJtu2Xco9ajnw/exec'
 
 /**
  * Отправляет данные лида в Google Sheets
