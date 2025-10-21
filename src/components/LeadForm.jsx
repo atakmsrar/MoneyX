@@ -3,6 +3,7 @@ import { modalIn, modalOut } from '../utils/animations'
 import { validateForm } from '../utils/validation'
 import { formatPhone } from '../utils/phoneFormatter'
 import { countries } from '../constants/countries'
+import { sendToGoogleSheets, isGoogleSheetsConfigured } from '../utils/googleSheets'
 
 const LeadForm = ({ isOpen, onClose, formType = 'consultation' }) => {
   const [formData, setFormData] = useState({
@@ -51,17 +52,33 @@ const LeadForm = ({ isOpen, onClose, formType = 'consultation' }) => {
     setIsSubmitting(true)
 
     try {
-      // Здесь можно добавить отправку данных на сервер
       const selectedCountry = countries.find(c => c.value === formData.country)
+      
+      // Подготавливаем данные для отправки
+      const leadData = {
+        fullName: formData.fullName,
+        country: selectedCountry?.label || formData.country,
+        email: formData.email,
+        phone: formData.phone,
+        source: `MoneyX Website - ${formType}`
+      }
+      
       console.log('🎯 Лид-форма отправлена:', { 
-        ...formData, 
-        countryName: selectedCountry?.label || 'Не выбрано',
-        formType,
+        ...leadData,
         timestamp: new Date().toISOString()
       })
       
-      // Имитация отправки
-      await new Promise(resolve => setTimeout(resolve, 2000))
+      // Отправляем данные в Google Sheets
+      if (isGoogleSheetsConfigured()) {
+        const sheetsResult = await sendToGoogleSheets(leadData)
+        if (sheetsResult.success) {
+          console.log('✅ Данные успешно сохранены в Google Sheets')
+        } else {
+          console.warn('⚠️ Не удалось сохранить в Google Sheets:', sheetsResult.error)
+        }
+      } else {
+        console.warn('⚠️ Google Sheets не настроен. Инструкция: GOOGLE_SHEETS_SETUP.md')
+      }
       
       // Отправляем событие Lead в Facebook Pixel
       if (typeof window !== 'undefined' && window.fbq) {
