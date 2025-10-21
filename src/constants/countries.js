@@ -34,5 +34,12 @@ export const countries = [
     phoneMask: '+373 (22) 123-456',
     phoneCode: '+373',
     phoneRegex: /^[\+]?373[\d]{8}$/
+  },
+  { 
+    value: 'latvia', 
+    label: 'Латвия',
+    phoneMask: '+371 (12) 345-678',
+    phoneCode: '+371',
+    phoneRegex: /^[\+]?371[\d]{8}$/
   }
 ]
