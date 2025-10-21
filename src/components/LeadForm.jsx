@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { modalIn, modalOut } from '../utils/animations'
 import { validateForm } from '../utils/validation'
 import { formatPhone } from '../utils/phoneFormatter'
@@ -6,6 +7,7 @@ import { countries } from '../constants/countries'
 import { sendToGoogleSheets, isGoogleSheetsConfigured } from '../utils/googleSheets'
 
 const LeadForm = ({ isOpen, onClose, formType = 'consultation' }) => {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     fullName: '',
     phone: '',
@@ -90,13 +92,16 @@ const LeadForm = ({ isOpen, onClose, formType = 'consultation' }) => {
         })
       }
       
-      // Показываем сообщение об успехе
-      alert('Спасибо! Мы свяжемся с вами в ближайшее время.')
-      
       // Очищаем форму и закрываем модальное окно
       setFormData({ fullName: '', phone: '', email: '', country: '' })
       setErrors({})
       handleClose()
+      
+      // Устанавливаем флаг успешной отправки для Thank You страницы
+      sessionStorage.setItem('formSubmitted', 'true')
+      
+      // Перенаправляем на Thank You страницу
+      navigate('/thank-you')
       
     } catch (error) {
       console.error('Ошибка отправки формы:', error)

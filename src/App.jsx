@@ -14,6 +14,7 @@ const Course = lazy(() => import('./pages/Course'))
 const Reviews = lazy(() => import('./pages/Reviews'))
 const About = lazy(() => import('./pages/About'))
 const Logo3DPage = lazy(() => import('./pages/Logo3DPage'))
+const ThankYou = lazy(() => import('./pages/ThankYou'))
 
 function App() {
   const location = useLocation()
@@ -41,6 +42,7 @@ function App() {
             <Route path="/reviews" element={<Reviews />} />
             <Route path="/about" element={<About />} />
             <Route path="/logo3d" element={<Logo3DPage />} />
+            <Route path="/thank-you" element={<ThankYou />} />
           </Routes>
         </Suspense>
       </div>
