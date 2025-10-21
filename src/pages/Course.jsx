@@ -11,6 +11,14 @@ const Course = () => {
   const [isLeadFormOpen, setIsLeadFormOpen] = useState(false)
   const [leadFormType, setLeadFormType] = useState('consultation')
 
+  // Динамический путь к видео для разных платформ
+  const getVideoPath = () => {
+    if (typeof window !== 'undefined' && window.location.hostname === 'atakmsrar.github.io') {
+      return '/MoneyX/ready.mp4'
+    }
+    return '/ready.mp4'
+  }
+
   useEffect(() => {
     // Проверяем, что все refs готовы
     if (!titleRef.current || !descriptionRef.current || !videoRef.current) {
@@ -138,7 +146,7 @@ const Course = () => {
               preload="metadata"
               playsInline
             >
-              <source src="/MoneyX/ready.mp4" type="video/mp4" />
+              <source src={getVideoPath()} type="video/mp4" />
               Ваш браузер не поддерживает видео элемент.
             </video>
             
