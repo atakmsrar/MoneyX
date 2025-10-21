@@ -56,13 +56,18 @@ const LeadForm = ({ isOpen, onClose, formType = 'consultation' }) => {
     try {
       const selectedCountry = countries.find(c => c.value === formData.country)
       
+      // Форматируем тип формы с заглавной буквы
+      const formatFormType = (type) => {
+        return type.charAt(0).toUpperCase() + type.slice(1)
+      }
+      
       // Подготавливаем данные для отправки
       const leadData = {
         fullName: formData.fullName,
         country: selectedCountry?.label || formData.country,
         email: formData.email,
         phone: formData.phone,
-        source: `MoneyX Website - ${formType}`
+        source: `MoneyX Website - ${formatFormType(formType)}`
       }
       
       console.log('🎯 Лид-форма отправлена:', { 

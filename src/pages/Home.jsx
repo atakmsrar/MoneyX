@@ -171,7 +171,7 @@ const Home = () => {
       <LeadForm 
         isOpen={isLeadFormOpen}
         onClose={closeLeadForm}
-        formType="course"
+        formType="invest"
       />
 
       {/* Бегущая строка */}
