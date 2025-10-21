@@ -11,6 +11,7 @@ const Course = () => {
   const descriptionRef = useRef(null)
   const [isLeadFormOpen, setIsLeadFormOpen] = useState(false)
   const [leadFormType, setLeadFormType] = useState('consultation')
+  const [isMuted, setIsMuted] = useState(true)
 
   // Динамический путь к видео для разных платформ
   const getVideoPath = () => {
@@ -113,6 +114,14 @@ const Course = () => {
     setIsLeadFormOpen(false)
   }
 
+  // Функция переключения звука
+  const toggleMute = () => {
+    if (videoElementRef.current) {
+      videoElementRef.current.muted = !isMuted
+      setIsMuted(!isMuted)
+    }
+  }
+
   return (
     <div className="min-h-screen pt-20 px-4 py-12">
       <div ref={containerRef} className="max-w-7xl mx-auto">
@@ -152,10 +161,30 @@ const Course = () => {
             </video>
             
             {/* Декоративные элементы */}
-            <div className="absolute top-4 left-4">
+            <div className="absolute top-4 left-4 flex items-center gap-3">
               <span className="bg-gradient-to-r from-amber-400 to-orange-500 text-black px-3 py-1 rounded-full text-sm font-bold">
                 ДЕМО ВЕРСИЯ
               </span>
+              
+              {/* Кнопка управления звуком */}
+              <button
+                onClick={toggleMute}
+                className="bg-black/50 hover:bg-black/70 backdrop-blur-sm rounded-full p-2 transition-all duration-300 group"
+                aria-label={isMuted ? "Включить звук" : "Выключить звук"}
+              >
+                {isMuted ? (
+                  // Иконка выключенного звука
+                  <svg className="w-6 h-6 text-white group-hover:text-amber-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+                  </svg>
+                ) : (
+                  // Иконка включенного звука
+                  <svg className="w-6 h-6 text-amber-400 group-hover:text-amber-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                  </svg>
+                )}
+              </button>
             </div>
             
             <div className="absolute bottom-4 right-4">
