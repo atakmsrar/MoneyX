@@ -63,6 +63,16 @@ const LeadForm = ({ isOpen, onClose, formType = 'consultation' }) => {
       // Имитация отправки
       await new Promise(resolve => setTimeout(resolve, 2000))
       
+      // Отправляем событие Lead в Facebook Pixel
+      if (typeof window !== 'undefined' && window.fbq) {
+        window.fbq('track', 'Lead', {
+          content_name: formType,
+          content_category: 'Lead Form',
+          value: 1,
+          currency: 'USD'
+        })
+      }
+      
       // Показываем сообщение об успехе
       alert('Спасибо! Мы свяжемся с вами в ближайшее время.')
       
