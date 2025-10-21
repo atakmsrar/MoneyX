@@ -41,7 +41,7 @@ const FloatingParticles = () => {
 
     // Создаем меньше частиц для слабых устройств
     const isMobile = window.innerWidth < 768
-    const particleCount = isMobile ? 30 : 80
+    const particleCount = isMobile ? 15 : 80 // Уменьшено с 30 до 15 для мобильных
     const particles = []
     for (let i = 0; i < particleCount; i++) {
       particles.push(createParticle())

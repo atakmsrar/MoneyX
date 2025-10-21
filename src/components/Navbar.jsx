@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { gsap } from 'gsap'
+import { isMobileDevice } from '../utils/deviceDetect'
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -70,13 +71,15 @@ const Navbar = () => {
     { name: 'О нас', path: '/about' }
   ]
 
+  const blurClass = isMobileDevice() ? '' : 'backdrop-blur-md'
+  
   return (
     <nav 
       ref={navbarRef}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${blurClass} ${
         isScrolled 
-          ? 'backdrop-blur-md bg-black/50 border-b border-white/10' 
-          : 'backdrop-blur-md bg-black/30'
+          ? 'bg-black/50 border-b border-white/10' 
+          : 'bg-black/30'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -130,7 +133,7 @@ const Navbar = () => {
       {isMobileMenuOpen && (
         <div 
           ref={mobileMenuRef}
-          className="md:hidden bg-black/95 backdrop-blur-md border-b border-white/10"
+          className="md:hidden bg-black/95 border-b border-white/10"
         >
           <div className="px-4 py-6 space-y-4">
             {navItems.map((item) => (

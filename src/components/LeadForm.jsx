@@ -5,6 +5,7 @@ import { validateForm } from '../utils/validation'
 import { formatPhone } from '../utils/phoneFormatter'
 import { countries } from '../constants/countries'
 import { sendToGoogleSheets, isGoogleSheetsConfigured } from '../utils/googleSheets'
+import { isMobileDevice } from '../utils/deviceDetect'
 
 const LeadForm = ({ isOpen, onClose, formType = 'consultation' }) => {
   const navigate = useNavigate()
@@ -200,7 +201,7 @@ const LeadForm = ({ isOpen, onClose, formType = 'consultation' }) => {
     : 'Заполните форму, чтобы получить доступ к полному курсу и начать обучение'
 
   return (
-    <div className="modal-overlay fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div className={`modal-overlay fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 ${isMobileDevice() ? '' : 'backdrop-blur-sm'}`}>
       <div className="modal-content bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl border border-white/10 shadow-2xl w-full max-w-md">
         {/* Заголовок */}
         <div className="p-6 border-b border-white/10">

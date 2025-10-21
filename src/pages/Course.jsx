@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import LeadForm from '../components/LeadForm'
+import { isMobileDevice } from '../utils/deviceDetect'
 
 const Course = () => {
   const containerRef = useRef(null)
@@ -134,16 +135,16 @@ const Course = () => {
 
         {/* Видео плеер */}
         <div ref={videoRef} className="mb-16">
-          <div className="relative bg-black/20 backdrop-blur-sm rounded-2xl border border-white/10 overflow-hidden shadow-2xl">
+          <div className={`relative bg-black/20 rounded-2xl border border-white/10 overflow-hidden shadow-2xl ${isMobileDevice() ? '' : 'backdrop-blur-sm'}`}>
             <video 
               ref={videoElementRef}
               className="w-full h-auto rounded-2xl"
               controls
-              autoPlay
+              autoPlay={!isMobileDevice()}
               muted
               loop
               poster=""
-              preload="metadata"
+              preload={isMobileDevice() ? "none" : "metadata"}
               playsInline
             >
               <source src={getVideoPath()} type="video/mp4" />
