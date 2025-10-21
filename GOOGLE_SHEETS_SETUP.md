@@ -13,6 +13,7 @@
    - **D1**: Номер телефона
    - **E1**: Дата и время
    - **F1**: Источник
+   - **G1**: PageURL
 
 ## Шаг 2: Создание Google Apps Script
 
@@ -36,7 +37,8 @@ function doPost(e) {
       data.email || '',
       data.phone || '',
       data.timestamp || new Date().toISOString(),
-      data.source || 'MoneyX Website'
+      data.source || 'MoneyX Website',
+      data.pageUrl || ''
     ];
     
     // Добавляем строку в таблицу
@@ -94,9 +96,9 @@ VITE_GOOGLE_SCRIPT_URL=https://script.google.com/macros/s/ВАШ_URL_ЗДЕСЬ/
 
 ## Пример заполненной таблицы
 
-| ФИО | Страна | Почта | Номер телефона | Дата и время | Источник |
-|-----|--------|-------|----------------|--------------|----------|
-| Иван Иванов | Россия | ivan@example.com | +7 (999) 123-45-67 | 2025-10-21T14:30:00.000Z | MoneyX Website |
+| ФИО | Страна | Почта | Номер телефона | Дата и время | Источник | PageURL |
+|-----|--------|-------|----------------|--------------|----------|---------|
+| Иван Иванов | Россия | ivan@example.com | 79991234567 | 2025-10-21T14:30:00.000Z | MoneyX Website - Invest | https://example.com/ |
 
 ## Проверка работы
 

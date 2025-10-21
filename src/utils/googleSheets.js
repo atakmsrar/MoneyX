@@ -24,6 +24,7 @@ const cleanPhoneNumber = (phone) => {
  * @param {string} leadData.country - страна
  * @param {string} leadData.email - email
  * @param {string} leadData.phone - телефон
+ * @param {string} leadData.source - источник
  * @returns {Promise<Object>} результат отправки
  */
 export const sendToGoogleSheets = async (leadData) => {
@@ -35,6 +36,9 @@ export const sendToGoogleSheets = async (leadData) => {
   try {
     // Очищаем номер телефона от всех символов (скобки, пробелы, тире и т.д.)
     const cleanPhone = cleanPhoneNumber(leadData.phone)
+    
+    // Получаем URL текущей страницы
+    const pageUrl = typeof window !== 'undefined' ? window.location.href : ''
     
     const response = await fetch(GOOGLE_SCRIPT_URL, {
       method: 'POST',
@@ -48,13 +52,14 @@ export const sendToGoogleSheets = async (leadData) => {
         email: leadData.email,
         phone: cleanPhone, // Отправляем только цифры
         timestamp: new Date().toISOString(),
-        source: leadData.source || 'MoneyX Website'
+        source: leadData.source || 'MoneyX Website',
+        pageUrl: pageUrl
       })
     })
 
     // При mode: 'no-cors' мы не можем прочитать ответ,
     // но запрос будет отправлен успешно
-    console.log('✅ Данные отправлены в Google Sheets (телефон:', cleanPhone, ')')
+    console.log('✅ Данные отправлены в Google Sheets (телефон:', cleanPhone, ', URL:', pageUrl, ')')
     return { success: true }
 
   } catch (error) {
