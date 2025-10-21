@@ -76,18 +76,6 @@ const LeadForm = ({ isOpen, onClose, formType = 'consultation' }) => {
         timestamp: new Date().toISOString()
       })
       
-      // Отправляем данные в Google Sheets
-      if (isGoogleSheetsConfigured()) {
-        const sheetsResult = await sendToGoogleSheets(leadData)
-        if (sheetsResult.success) {
-          console.log('✅ Данные успешно сохранены в Google Sheets')
-        } else {
-          console.warn('⚠️ Не удалось сохранить в Google Sheets:', sheetsResult.error)
-        }
-      } else {
-        console.warn('⚠️ Google Sheets не настроен. Инструкция: GOOGLE_SHEETS_SETUP.md')
-      }
-      
       // Отправляем событие Lead в Facebook Pixel
       if (typeof window !== 'undefined' && window.fbq) {
         window.fbq('track', 'Lead', {
@@ -98,6 +86,21 @@ const LeadForm = ({ isOpen, onClose, formType = 'consultation' }) => {
         })
       }
       
+      // Отправляем данные в Google Sheets асинхронно (не ждём ответа)
+      if (isGoogleSheetsConfigured()) {
+        sendToGoogleSheets(leadData).then(sheetsResult => {
+          if (sheetsResult.success) {
+            console.log('✅ Данные успешно сохранены в Google Sheets')
+          } else {
+            console.warn('⚠️ Не удалось сохранить в Google Sheets:', sheetsResult.error)
+          }
+        }).catch(err => {
+          console.warn('⚠️ Ошибка отправки в Google Sheets:', err)
+        })
+      } else {
+        console.warn('⚠️ Google Sheets не настроен. Инструкция: GOOGLE_SHEETS_SETUP.md')
+      }
+      
       // Очищаем форму и закрываем модальное окно
       setFormData({ fullName: '', phone: '', email: '', country: '' })
       setErrors({})
@@ -106,7 +109,7 @@ const LeadForm = ({ isOpen, onClose, formType = 'consultation' }) => {
       // Устанавливаем флаг успешной отправки для Thank You страницы
       sessionStorage.setItem('formSubmitted', 'true')
       
-      // Перенаправляем на Thank You страницу
+      // Перенаправляем на Thank You страницу сразу (не ждём Google Sheets)
       navigate('/thank-you')
       
     } catch (error) {
