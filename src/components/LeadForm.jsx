@@ -219,6 +219,42 @@ const LeadForm = ({ isOpen, onClose, formType = 'consultation' }) => {
 
         {/* Форма */}
         <form onSubmit={handleSubmit} className="p-6 space-y-6">
+          {/* Страна */}
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-2">
+              Страна *
+            </label>
+            <div className="relative">
+              <select
+                name="country"
+                value={formData.country}
+                onChange={handleChange}
+                className={`form-input appearance-none cursor-pointer ${
+                  errors.country ? 'form-input-error' : ''
+                }`}
+              >
+                {countries.map((country) => (
+                  <option 
+                    key={country.value} 
+                    value={country.value}
+                    className="bg-gray-800 text-white"
+                  >
+                    {country.label}
+                  </option>
+                ))}
+              </select>
+              {/* Кастомная стрелка */}
+              <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+            </div>
+            {errors.country && (
+              <p className="text-red-400 text-sm mt-1">{errors.country}</p>
+            )}
+          </div>
+
           {/* ФИО */}
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">
@@ -297,42 +333,6 @@ const LeadForm = ({ isOpen, onClose, formType = 'consultation' }) => {
             />
             {errors.email && (
               <p className="text-red-400 text-sm mt-1">{errors.email}</p>
-            )}
-          </div>
-
-          {/* Страна */}
-          <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              Страна *
-            </label>
-            <div className="relative">
-              <select
-                name="country"
-                value={formData.country}
-                onChange={handleChange}
-                className={`form-input appearance-none cursor-pointer ${
-                  errors.country ? 'form-input-error' : ''
-                }`}
-              >
-                {countries.map((country) => (
-                  <option 
-                    key={country.value} 
-                    value={country.value}
-                    className="bg-gray-800 text-white"
-                  >
-                    {country.label}
-                  </option>
-                ))}
-              </select>
-              {/* Кастомная стрелка */}
-              <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </div>
-            </div>
-            {errors.country && (
-              <p className="text-red-400 text-sm mt-1">{errors.country}</p>
             )}
           </div>
 

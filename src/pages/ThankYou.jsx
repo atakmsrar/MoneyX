@@ -118,7 +118,7 @@ const ThankYou = () => {
             Ваша заявка успешно отправлена! 🎉
           </p>
           <p className="text-lg text-gray-400 max-w-xl mx-auto">
-            Наш менеджер свяжется с вами в ближайшее время. Проверьте свою почту и телефон.
+            Наш менеджер свяжется с вами в ближайшее время.
           </p>
         </div>
 
@@ -135,10 +135,10 @@ const ThankYou = () => {
             </div>
             
             <div className="flex items-start gap-3">
-              <div className="text-3xl">📧</div>
+              <div className="text-3xl">💬</div>
               <div>
-                <h3 className="text-white font-semibold mb-1">Email</h3>
-                <p className="text-gray-400 text-sm">Проверьте почту - мы отправили подтверждение</p>
+                <h3 className="text-white font-semibold mb-1">Консультация</h3>
+                <p className="text-gray-400 text-sm">Наш эксперт ответит на все ваши вопросы</p>
               </div>
             </div>
             
