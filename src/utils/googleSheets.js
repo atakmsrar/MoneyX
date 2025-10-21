@@ -4,7 +4,7 @@
 
 // URL вашего Google Apps Script Web App
 // Инструкция по настройке в файле GOOGLE_SHEETS_SETUP.md
-const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbxGXSXF7PtH8VpCHo7uofwuXyVN7pMiLVRR1eUzc_9sBefMwlNei7BSulJtu2Xco9ajnw/exec'
+const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbxoNL2F4cdCAyNhgjB_oHV5Vqe_WvKL_tE52rtBRnSxfNYTZnLfqxaM6jLxIShH6CUA_Q/exec'
 
 /**
  * Очищает номер телефона от всех символов, оставляя только цифры
