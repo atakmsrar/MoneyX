@@ -76,6 +76,11 @@ const LeadForm = ({ isOpen, onClose, formType = 'consultation' }) => {
         timestamp: new Date().toISOString()
       })
       
+      // Отправляем событие конверсии в Google Ads
+      if (typeof window !== 'undefined' && window.gtag_report_conversion) {
+        window.gtag_report_conversion()
+      }
+      
       // Отправляем событие Lead в Facebook Pixel
       if (typeof window !== 'undefined' && window.fbq) {
         window.fbq('track', 'Lead', {
