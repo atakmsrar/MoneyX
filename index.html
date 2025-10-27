@@ -11,6 +11,24 @@
       gtag('config', 'AW-17669476714');
     </script>
     
+    <!-- Event snippet for Отправка формы для потенциальных клиентов conversion page -->
+    <script>
+      function gtag_report_conversion(url) {
+        var callback = function () {
+          if (typeof(url) != 'undefined') {
+            window.location = url;
+          }
+        };
+        gtag('event', 'conversion', {
+            'send_to': 'AW-17669476714/db7tCNzAirEbEOqiu-lB',
+            'value': 1.0,
+            'currency': 'USD',
+            'event_callback': callback
+        });
+        return false;
+      }
+    </script>
+    
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
@@ -33,7 +51,7 @@
       fbq('track', 'PageView');
     </script>
     <!-- End Meta Pixel Code -->
-    <script type="module" crossorigin src="/assets/index-87bf882d.js"></script>
+    <script type="module" crossorigin src="/assets/index-73bf16d7.js"></script>
     <link rel="stylesheet" href="/assets/index-cb46e021.css">
   </head>
   <body>
