@@ -5,10 +5,8 @@ import { isMobileDevice } from '../utils/deviceDetect'
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const location = useLocation()
   const navbarRef = useRef(null)
-  const mobileMenuRef = useRef(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,32 +35,6 @@ const Navbar = () => {
     })
   }, [])
 
-  useEffect(() => {
-    if (!mobileMenuRef.current) return
-
-    if (isMobileMenuOpen) {
-      gsap.fromTo(mobileMenuRef.current, 
-        { height: 0, opacity: 0 },
-        { height: 'auto', opacity: 1, duration: 0.3, ease: "power2.out" }
-      )
-    } else {
-      gsap.to(mobileMenuRef.current, {
-        height: 0,
-        opacity: 0,
-        duration: 0.3,
-        ease: "power2.in"
-      })
-    }
-  }, [isMobileMenuOpen])
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen)
-  }
-
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false)
-  }
-
   const navItems = [
     { name: 'Главная', path: '/' },
     { name: 'Новости', path: '/news' },
@@ -83,7 +55,7 @@ const Navbar = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 py-4 md:py-0 md:h-16">
           {/* Логотип */}
           <Link 
             to="/" 
@@ -93,66 +65,23 @@ const Navbar = () => {
           </Link>
 
           {/* Навигационное меню */}
-          <div className="hidden md:flex space-x-8">
+          <div className="flex items-center gap-2 md:gap-8 overflow-x-auto whitespace-nowrap scrollbar-thin scrollbar-thumb-amber-400/40 scrollbar-track-transparent pb-1">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`px-3 py-2 text-sm font-medium transition-all duration-300 hover:text-amber-400 ${
+                className={`px-3 py-2 text-sm font-medium rounded-full border border-transparent transition-all duration-300 hover:text-amber-400 flex-shrink-0 ${
                   location.pathname === item.path
-                    ? 'text-amber-400'
+                    ? 'text-black bg-amber-400'
                     : 'text-white hover:text-gray-300'
                 }`}
               >
                 {item.name}
               </Link>
             ))}
-          </div>
-
-          {/* Мобильное меню */}
-          <div className="md:hidden">
-            <button 
-              onClick={toggleMobileMenu}
-              className="text-white hover:text-amber-400 transition-colors duration-300"
-            >
-              {isMobileMenuOpen ? (
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              ) : (
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              )}
-            </button>
           </div>
         </div>
       </div>
-
-      {/* Мобильное меню */}
-      {isMobileMenuOpen && (
-        <div 
-          ref={mobileMenuRef}
-          className="md:hidden bg-black/95 border-b border-white/10"
-        >
-          <div className="px-4 py-6 space-y-4">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                onClick={closeMobileMenu}
-                className={`block px-3 py-2 text-lg font-medium transition-all duration-300 hover:text-amber-400 ${
-                  location.pathname === item.path
-                    ? 'text-amber-400'
-                    : 'text-white hover:text-gray-300'
-                }`}
-              >
-                {item.name}
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
     </nav>
   )
 }
