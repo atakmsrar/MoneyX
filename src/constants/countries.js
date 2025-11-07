@@ -41,5 +41,19 @@ export const countries = [
     phoneMask: '+371 (12) 345-678',
     phoneCode: '+371',
     phoneRegex: /^[\+]?371[\d]{8}$/
+  },
+  { 
+    value: 'azerbaijan', 
+    label: 'Азербайджан',
+    phoneMask: '+994 (12) 345-67-89',
+    phoneCode: '+994',
+    phoneRegex: /^[\+]?994[\d]{9}$/
+  },
+  { 
+    value: 'uzbekistan', 
+    label: 'Узбекистан',
+    phoneMask: '+998 (90) 123-45-67',
+    phoneCode: '+998',
+    phoneRegex: /^[\+]?998[\d]{9}$/
   }
 ]
