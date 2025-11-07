@@ -106,8 +106,10 @@ const FloatingParticles = () => {
     })
 
     // Анимация при наведении мыши (только для десктопа)
+    let handleMouseMove
+
     if (!isMobile) {
-      const handleMouseMove = (e) => {
+      handleMouseMove = (e) => {
         const x = e.clientX
         const y = e.clientY
         
@@ -143,7 +145,7 @@ const FloatingParticles = () => {
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
-      if (!isMobile) {
+      if (!isMobile && handleMouseMove) {
         window.removeEventListener('mousemove', handleMouseMove)
       }
       // Очищаем частицы при размонтировании
